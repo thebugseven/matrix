@@ -141,6 +141,6 @@ impl Field for Complex {
     }
 
     fn angle_numerator(&self) -> f32 {
-        self.im.atan2(self.re)
+        self.magnitude()
     }
 }

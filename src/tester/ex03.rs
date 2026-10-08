@@ -1,6 +1,41 @@
 use crate::vector::Vector;
+use crate::complex::Complex;
+
+fn c(re: f32, im: f32) -> Complex {
+    Complex::new(re, im)
+}
 
 pub fn run() {
+    println!("\n========== REAL TESTS ==========");
+    real_tests();
+
+    println!("\n======== COMPLEX TESTS =========");
+    complex_tests();
+}
+
+fn complex_tests() {
+    println!("\n--- Complex dot product ---");
+
+    let u = Vector::from([
+        c(1.0, 1.0),
+        c(2.0, -1.0),
+    ]);
+
+    let v = Vector::from([
+        c(2.0, 0.0),
+        c(1.0, 3.0),
+    ]);
+
+    println!("u:\n{}\n", u);
+    println!("v:\n{}\n", v);
+
+    let result = u.dot(v);
+
+    println!("dot product:");
+    println!("{}", result);
+}
+
+fn real_tests() {
     test_1();
     test_2();
     test_3();

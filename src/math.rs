@@ -32,7 +32,7 @@ where V: Add<Output = V> + Mul<f32, Output = V>,
 }
 
 pub fn angle_cos<K>(u: &Vector<K>, v: &Vector<K>) -> f32
-where K: Field,
+where K: Field + std::fmt::Display,
 {
     if u.data.len() != v.data.len() {
         panic!("Vectors must be of the same length");
@@ -42,6 +42,7 @@ where K: Field,
 
     let norm_u = u.norm_2();
     let norm_v = v.norm_2();
+
 
     if norm_u == 0.0 || norm_v == 0.0 {
         panic!("Cannot compute angle with zero-length vector");

@@ -45,7 +45,11 @@ const EXERCISES: &[Exercise] = &[
         name: "Cross Product",
         run: tester::ex06::run,
     },
-
+    Exercise {
+        id: 7,
+        name: "Matrix x Vector",
+        run: tester::ex07::run,
+    },
 ];
 
 pub fn run() {

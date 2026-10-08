@@ -3,6 +3,7 @@ use std::fmt;
 use std::convert::From;
 
 use crate::scalar::Field;
+use crate::vector::Vector;
 
 #[derive(Debug, Clone)]
 pub struct Matrix<K> {
@@ -98,7 +99,54 @@ where K: Field,
         for i in 0..self.data.len() {
             self.data[i] = self.data[i].clone() * scalar.clone();
         }
+    }
 
+    pub fn mul_vec(&self, u: &Vector<K>) -> Vector<K>
+    {
+        if self.cols !=  u.data.len() {
+            panic!("Matrix columns must match vector length for multiplication");
+        }
+
+        if self.rows == 0 || self.cols == 0 {
+            panic!("Matrix cannot be empty");
+        }
+
+        let mut result = vec![K::zero(); self.rows];
+
+        for row in 0..self.rows {
+            let mut sum = K::zero();
+
+            for col in 0..self.cols {
+                sum = sum + self.data[row * self.cols + col].clone() * u.data[col].clone();
+            }
+            result[row] = sum;
+        }
+        Vector { data: result }
+    }
+
+    pub fn mul_mat(&self, A: &Matrix<K>) -> Matrix<K>
+    {
+        if self.cols != A.rows {
+            panic!("Martrix shape mismatch");
+        }
+
+        let mut result = vec![K::zero(); self.rows * A.cols];
+
+        for row in 0..self.rows {
+            for col in 0..A.cols {
+                let mut sum = K::zero();
+                for k in 0..self.cols {
+                    sum = sum + self.data[row * self.cols + k].clone()  * A.data[k * A.cols + col].clone();
+                }
+                result[row * A.cols + col] = sum;
+            }
+        }
+
+        Matrix {
+            data: result,
+            rows: self.rows,
+            cols: A.cols,
+        }
     }
 }
 
