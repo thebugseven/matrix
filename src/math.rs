@@ -1,4 +1,4 @@
-use crate::vector::Vector;
+use crate::{matrix::Matrix, vector::Vector};
 use crate::scalar::Field;
 use std::ops::{Add, Mul, Div};
 
@@ -65,5 +65,32 @@ where K: Field,
     Vector {
         data: vec![x, y, z],
     }
+
+}
+
+
+pub fn projection(fov: f32, ratio: f32, near: f32, far: f32) -> Matrix<f32> {
+    if ratio <= 0.0 {
+        panic!("Aspect ratio must be positive");
+    }
+
+    if near <= 0.0 || far <= near {
+        panic!("Expected 0 < near < far");
+    }
+
+    let scale = 1.0 / (fov / 2.0).tan();
+
+    let x_sscale = scale / ratio;
+    let y_scale = scale;
+
+    let z_scale = far / (near - far);
+    let z_offset = (far * near) / (near - far);
+
+    Matrix::from([
+        [x_sscale, 0.0, 0.0, 0.0],
+        [0.0, y_scale, 0.0, 0.0],
+        [0.0, 0.0, z_scale, z_offset],
+        [0.0, 0.0, -1.0, 0.0],
+    ])
 
 }

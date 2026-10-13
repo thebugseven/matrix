@@ -20,7 +20,7 @@ impl<K, const N: usize> From<[K; N]> for Vector<K> {
     }
 }
 
-impl <K> Vector<K>
+impl<K> Vector<K>
 where K: Field,
 {
     pub fn add(&mut self, other: &Vector<K>)

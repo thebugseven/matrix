@@ -50,6 +50,41 @@ const EXERCISES: &[Exercise] = &[
         name: "Matrix x Vector",
         run: tester::ex07::run,
     },
+    Exercise {
+        id: 8,
+        name: "Trace",
+        run: tester::ex08::run,
+    },
+    Exercise {
+        id: 9,
+        name: "Transpose",
+        run: tester::ex09::run,
+    },
+    Exercise {
+        id: 10,
+        name: "Row Echelon",
+        run: tester::ex10::run,
+    },
+    Exercise {
+        id: 11,
+        name: "Determinant",
+        run: tester::ex11::run,
+    },
+    Exercise {
+        id: 12,
+        name: "Inverse",
+        run: tester::ex12::run,
+    },
+    Exercise {
+        id: 13,
+        name: "Rank",
+        run: tester::ex13::run,
+    },
+    Exercise {
+        id: 14,
+        name: "Projection",
+        run: tester::ex14::run,
+    },
 ];
 
 pub fn run() {
@@ -112,16 +147,20 @@ fn execute_command(command: &str) {
 fn run_exercise(id: usize) {
     match EXERCISES.iter().find(|exercise| exercise.id == id) {
         Some(exercise) => {
-            println!();
-            println!("========================================");
-            println!(
-                " Exercise {:02} - {}",
-                exercise.id,
-                exercise.name
-            );
-            println!("========================================");
-
-            (exercise.run)();
+            if exercise.id == 14 {
+                (exercise.run)();
+            } else {
+                println!();
+                println!("========================================");
+                println!(
+                    " Exercise {:02} - {}",
+                    exercise.id,
+                    exercise.name
+                );
+                println!("========================================");
+    
+                (exercise.run)();
+            }
         }
 
         None => {
@@ -132,6 +171,9 @@ fn run_exercise(id: usize) {
 
 fn run_all() {
     for exercise in EXERCISES {
+        if exercise.id == 14 {
+            continue;
+        }
         println!();
         println!("========================================");
         println!(

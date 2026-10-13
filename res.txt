@@ -559,3 +559,378 @@ result:
 {[4 + 6i, 2 + 2i]
 [1 + 5i, -2 + 2i]}
 
+
+========================================
+ Exercise 08 - Trace
+========================================
+
+========== REAL TESTS ==========
+
+--- Test 1 ---
+matrix:
+{[1, 0]
+[0, 1]}
+trace:
+2
+
+--- Test 2 ---
+matrix:
+{[2, -5, 0]
+[4, 3, 7]
+[-2, 3, 4]}
+trace:
+9
+
+--- Test 3 ---
+matrix:
+{[-2, -8, 4]
+[1, -23, 4]
+[0, 6, 4]}
+trace:
+-21
+
+======== COMPLEX TESTS =========
+
+--- Complex Test 1 ---
+matrix:
+{[1 + 2i, 4 - 1i]
+[2 + 3i, 3 - 4i]}
+trace:
+4 - 2i
+
+--- Complex Test 2 ---
+matrix:
+{[2 + 1i, 4 - 2i, 7 + 3i]
+[1 + 0i, -3 + 2i, 5 - 1i]
+[6 - 4i, 2 + 1i, 4 - 3i]}
+trace:
+3 + 0i
+
+========================================
+ Exercise 09 - Transpose
+========================================
+
+========== REAL TESTS ==========
+
+--- Square matrix ---
+matrix:
+{[1, 2]
+[3, 4]}
+
+transpose:
+{[1, 3]
+[2, 4]}
+
+
+--- Rectangular matrix ---
+matrix:
+{[1, 2, 3]
+[4, 5, 6]}
+
+transpose:
+{[1, 4]
+[2, 5]
+[3, 6]}
+
+
+======== COMPLEX TESTS =========
+
+--- Complex square matrix ---
+matrix:
+{[1 + 2i, 3 - 1i]
+[2 + 4i, -1 + 5i]}
+
+conjugate transpose:
+{[1 - 2i, 2 - 4i]
+[3 + 1i, -1 - 5i]}
+
+
+--- Complex rectangular matrix ---
+matrix:
+{[1 + 1i, 2 - 2i, 3 + 0i]
+[4 + 3i, -1 + 1i, 0 - 2i]}
+
+conjugate transpose:
+{[1 - 1i, 4 - 3i]
+[2 + 2i, -1 - 1i]
+[3 + -0i, 0 + 2i]}
+
+
+========================================
+ Exercise 10 - Row Echelon
+========================================
+
+========== REAL TESTS ==========
+
+--- Test 1 : Identity matrix ---
+matrix:
+{[1, 0, 0]
+[0, 1, 0]
+[0, 0, 1]}
+
+row echelon:
+{[1, 0, 0]
+[0, 1, 0]
+[0, 0, 1]}
+
+
+--- Test 2 : Full rank matrix ---
+matrix:
+{[1, 2]
+[3, 4]}
+
+row echelon:
+{[1, 0]
+[-0, 1]}
+
+
+--- Test 3 : Dependent rows ---
+matrix:
+{[1, 2]
+[2, 4]}
+
+row echelon:
+{[1, 2]
+[0, 0]}
+
+
+--- Test 4 : Rectangular matrix ---
+matrix:
+{[8, 5, -2, 4, 28]
+[4, 2.5, 20, 4, -4]
+[8, 5, 1, 4, 17]}
+
+row echelon:
+{[1, 0.625, 0, 0, -12.166668]
+[0, 0, 1, 0, -3.6666667]
+[-0, -0, -0, 1, 29.5]}
+
+
+======== COMPLEX TESTS =========
+
+--- Complex Test 1 : Full rank ---
+matrix:
+{[1 + 0i, 0 + 1i]
+[1 + 0i, 1 + 1i]}
+
+row echelon:
+{[1 + 0i, 0 + 0i]
+[0 + 0i, 1 + 0i]}
+
+
+--- Complex Test 2 : Dependent rows ---
+matrix:
+{[1 + 0i, 2 + 1i, -1 + 0i]
+[2 + 0i, 4 + 2i, -2 + 0i]}
+
+row echelon:
+{[1 + 0i, 2 + 1i, -1 + 0i]
+[0 + 0i, 0 + 0i, 0 + 0i]}
+
+
+--- Complex Test 3 : Pivot swap ---
+matrix:
+{[0 + 0i, 1 + 1i, 2 + 0i]
+[1 + 0i, 0 + 0i, 1 + 0i]
+[2 + 0i, 0 + 0i, 2 + 0i]}
+
+row echelon:
+{[1 + 0i, 0 + 0i, 1 + 0i]
+[0 + 0i, 1 + 0i, 1 - 1i]
+[0 + 0i, 0 + 0i, 0 + 0i]}
+
+
+========================================
+ Exercise 11 - Determinant
+========================================
+
+========== REAL TESTS ==========
+
+--- Test 1 : Singular 2x2 ---
+matrix:
+{[1, -1]
+[-1, 1]}
+determinant:
+0
+
+--- Test 2 : Diagonal 3x3 ---
+matrix:
+{[2, 0, 0]
+[0, 2, 0]
+[0, 0, 2]}
+determinant:
+8
+
+--- Test 3 : General 3x3 ---
+matrix:
+{[8, 5, -2]
+[4, 7, 20]
+[7, 6, 1]}
+determinant:
+-173.99998
+
+--- Test 4 : General 4x4 ---
+matrix:
+{[8, 5, -2, 4]
+[4, 2.5, 20, 4]
+[8, 5, 1, 4]
+[28, -4, 17, 1]}
+determinant:
+1032
+
+======== COMPLEX TESTS =========
+
+--- Complex Test 1 : 2x2 ---
+matrix:
+{[1 + 1i, 2 + 0i]
+[0 + 1i, 2 - 1i]}
+determinant:
+3 - 1i
+
+--- Complex Test 2 : Singular 2x2 ---
+matrix:
+{[1 + 1i, 2 + 0i]
+[2 + 2i, 4 + 0i]}
+determinant:
+0 + 0i
+
+--- Complex Test 3 : Diagonal 3x3 ---
+matrix:
+{[1 + 1i, 0 + 0i, 0 + 0i]
+[0 + 0i, 2 - 1i, 0 + 0i]
+[0 + 0i, 0 + 0i, -1 + 2i]}
+determinant:
+-5 + 5i
+
+--- Complex Test 4 : Triangular 4x4 ---
+matrix:
+{[1 + 1i, 2 + 1i, 1 + 0i, 3 - 1i]
+[0 + 0i, 2 + 0i, 4 + 2i, 1 + 1i]
+[0 + 0i, 0 + 0i, 0 - 1i, 2 + 3i]
+[0 + 0i, 0 + 0i, 0 + 0i, 3 + 2i]}
+determinant:
+10 - 2i
+
+========================================
+ Exercise 12 - Inverse
+========================================
+
+========== REAL TESTS ==========
+
+--- Test 1 : Identity matrix ---
+matrix:
+{[1, 0, 0]
+[0, 1, 0]
+[0, 0, 1]}
+inverse:
+{[1, 0, 0]
+[0, 1, 0]
+[0, 0, 1]}
+
+--- Test 2 : Diagonal matrix ---
+matrix:
+{[2, 0, 0]
+[0, 2, 0]
+[0, 0, 2]}
+inverse:
+{[0.5, 0, 0]
+[0, 0.5, 0]
+[0, 0, 0.5]}
+
+--- Test 3 : General 3x3 ---
+matrix:
+{[8, 5, -2]
+[4, 7, 20]
+[7, 6, 1]}
+inverse:
+{[0.64942527, 0.09770115, -0.6551724]
+[-0.7816092, -0.12643678, 0.9655172]
+[0.14367816, 0.07471265, -0.20689656]}
+
+--- Test 4 : Singular matrix ---
+matrix:
+{[1, 2]
+[2, 4]}
+error:
+"Matrix is singular and cannot be inverted"
+
+======== COMPLEX TESTS =========
+
+--- Complex Test 1 : Diagonal matrix ---
+matrix:
+{[1 + 1i, 0 + 0i]
+[0 + 0i, 2 - 1i]}
+inverse:
+{[0.5 - 0.5i, 0 + 0i]
+[0 + 0i, 0.4 + 0.2i]}
+
+--- Complex Test 2 : Upper triangular ---
+matrix:
+{[1 + 0i, 0 + 1i]
+[0 + 0i, 1 + 0i]}
+inverse:
+{[1 + 0i, 0 - 1i]
+[0 + 0i, 1 + 0i]}
+
+--- Complex Test 3 : Singular matrix ---
+matrix:
+{[1 + 1i, 2 + 0i]
+[2 + 2i, 4 + 0i]}
+error:
+"Matrix is singular and cannot be inverted"
+
+========================================
+ Exercise 13 - Rank
+========================================
+
+========== REAL TESTS ==========
+
+--- Test 1 : Identity matrix ---
+matrix:
+{[1, 0, 0]
+[0, 1, 0]
+[0, 0, 1]}
+rank:
+3
+
+--- Test 2 : Dependent rows ---
+matrix:
+{[1, 2, 0, 0]
+[2, 4, 0, 0]
+[-1, 2, 1, 1]}
+rank:
+2
+
+--- Test 3 : Rectangular matrix ---
+matrix:
+{[8, 5, -2]
+[4, 7, 20]
+[7, 6, 1]
+[21, 18, 7]}
+rank:
+3
+
+======== COMPLEX TESTS =========
+
+--- Complex Test 1 : Full rank ---
+matrix:
+{[1 + 1i, 0 + 0i, 0 + 0i]
+[0 + 0i, 2 - 1i, 0 + 0i]
+[0 + 0i, 0 + 0i, -1 + 2i]}
+rank:
+3
+
+--- Complex Test 2 : Dependent rows ---
+matrix:
+{[1 + 1i, 2 + 0i]
+[2 + 2i, 4 + 0i]}
+rank:
+1
+
+--- Complex Test 3 : Rectangular dependent matrix ---
+matrix:
+{[1 + 0i, 0 + 0i, 0 + 1i, 2 + 0i]
+[0 + 0i, 1 + 0i, 1 + 0i, 0 + 0i]
+[1 + 0i, 1 + 0i, 1 + 1i, 2 + 0i]}
+rank:
+2
